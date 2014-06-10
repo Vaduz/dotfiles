@@ -1,0 +1,19 @@
+shell zsh
+vbell off
+autodetach on
+startup_message off
+defscrollback 100000
+ignorecase on
+
+bind 'w' windowlist
+bind 'K' kill
+bind ^R focus
+bind ^S split
+bind ^Q only
+bind ^X remove
+
+hardstatus alwayslastline "%{= dw} %-w%{= ck}%n %t%{-}%+w %{= dw} %= %Y/%m/%d %c:%s"
+caption always "%{=u dc} %="
+
+escape ^Tt
+defencoding UTF-8
