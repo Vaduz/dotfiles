@@ -68,7 +68,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # set prompt
 PROMPT="%(?.$YELLOW.$RED)%(!.#.$) $WHITE"
-RPROMPT="$RED%(?..%?) $GREEN$shorthost$LIGHT_GRAY:$LIGHT_PURPLE%~$LIGHT_GRAY"
+RPROMPT="$RED%(?..%?) $YELLOW$USER$WHITE@$GREEN$shorthost$LIGHT_GRAY:$LIGHT_PURPLE%~$LIGHT_GRAY"
 
 # agent forwarding
 if [ "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/.ssh/auth_sock" ]; then
@@ -82,7 +82,7 @@ fi
 alias       cp='cp -v'
 alias       rm='rm -v'
 alias       mv='mv -v'
-alias       ls='ls -FG'
+alias       ls='ls -FG --color=auto'
 alias        l='ls -lh'
 alias       ll='ls -l'
 alias       la='ls -Al'
