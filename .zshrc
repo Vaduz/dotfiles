@@ -95,6 +95,7 @@ alias     grep='grep --color=auto'
 alias        e='echo $?'
 alias      scp='scp -c blowfish'
 alias     motd='cat /etc/motd'
+alias     wget='wget --content-disposition'
 alias  json_pp='python -m json.tool'
 
 # key bind
