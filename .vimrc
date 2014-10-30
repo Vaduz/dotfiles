@@ -49,7 +49,7 @@ set wildmode=list:longest
 set history=100
 
 " folding
-set foldmethod=syntax
+" set foldmethod=syntax
 
 " tabs
 set tabstop=4
