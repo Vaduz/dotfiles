@@ -14,6 +14,7 @@ export TZ=JST-9
 export SVN_SSH="ssh -2"
 export SVN_EDITOR=vim
 export EDITOR=vim
+export LESS='-g -i -M -R -S -W -z-4 -x4'
 
 autoload -U compinit; compinit -u
 autoload colors; colors
@@ -87,7 +88,6 @@ alias        l='ls -lh'
 alias       ll='ls -l'
 alias       la='ls -Al'
 alias        s='screen -D -RR'
-alias     less='less -r'
 alias        h='history'
 alias    tailf='tail -F'
 alias      vim='vim -p'
