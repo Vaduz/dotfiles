@@ -103,7 +103,7 @@ bindkey -e
 
 # functions
 function find-grep {
-    find . -type f ! -path '*/.svn*' ! -path '*/.git*' -print0 | xargs -0 grep -n --color=auto --binary-files=without-match -e $@
+    find . -type f ! -path '*/.svn*' ! -path '*/.git*' -print0 | xargs -0 grep -i -n --color=auto --binary-files=without-match -e "$@"
 }
 
 function f {
