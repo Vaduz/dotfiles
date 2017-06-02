@@ -12,7 +12,7 @@ bind ^S split
 bind ^Q only
 bind ^X remove
 
-hardstatus alwayslastline "%{= dw} %-w%{= ck}%n %t%{-}%+w %{= dw} %= %Y/%m/%d %c:%s"
+hardstatus alwayslastline "%{= dw} %-w%{= ck}%n %t%{-}%+w %{= dw} %= %l | %Y/%m/%d %c:%s"
 caption always "%{=u dc} %="
 
 escape ^Tt
