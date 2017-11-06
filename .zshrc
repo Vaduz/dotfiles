@@ -97,7 +97,7 @@ alias        scp='scp -c blowfish'
 alias       motd='cat /etc/motd'
 alias       wget='wget --content-disposition'
 alias    json_pp='python -m json.tool'
-alias dstat-full='dstat -Tclmdrn'
+alias dstat-full='dstat -tclmdrn'
 
 # key bind
 bindkey -e
