@@ -4,7 +4,7 @@ HISTFILE="$HOME/.zsh-history"
 HISTSIZE=100000
 SAVEHIST=100000
 
-export PATH=:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin
 export JAVA_HOME=/Library/Java/Home
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
