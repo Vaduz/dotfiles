@@ -154,11 +154,11 @@ cmd2screen_window () {
 }
 add-zsh-hook preexec cmd2screen_window
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.plenv/bin:$PATH"
-eval "$(plenv init -)"
-export PATH=/usr/local/opt/mysql@5.6/bin/:$PATH
-export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
-export CPATH=/usr/local/opt/openssl/include:$CPATH
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$HOME/.plenv/bin:$PATH"
+# eval "$(plenv init -)"
+# export PATH=/usr/local/opt/mysql@5.6/bin/:$PATH
+# export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
+# export CPATH=/usr/local/opt/openssl/include:$CPATH
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 
