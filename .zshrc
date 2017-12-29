@@ -4,7 +4,7 @@ HISTFILE="$HOME/.zsh-history"
 HISTSIZE=100000
 SAVEHIST=100000
 
-export PATH=$HOME/.rbenv/bin:/usr/local/bin:$HOME/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Xcode.app/Contents/Developer/usr/bin:$HOME/bin
+export PATH=:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin
 export JAVA_HOME=/Library/Java/Home
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
@@ -18,6 +18,8 @@ export LESS='-g -i -M -R -S -W -z-4 -x4'
 
 autoload -U compinit; compinit -u
 autoload colors; colors
+autoload -Uz add-zsh-hook
+autoload -Uz vcs_info
 
 compctl -k _ssh_hosts ssh
 compctl -S ':' -k _ssh_hosts + -f scp
@@ -38,8 +40,13 @@ setopt correct
 setopt braceccl
 setopt list_packed
 
-# short host
-shorthost=`hostname | sed -E 's/\.[0-9a-zA-Z-]+(\.co)*\.(jp|com)$//'`
+# vcs
+add-zsh-hook precmd vcs_info
+zstyle ':vcs_info:*' formats "%F{blue}%s%F{white}-%F{blue}%b"
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}+"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}-"
+zstyle ':vcs_info:git:*' formats "%F{blue}%b%c%u"
 
 # color aliases
 local        BLACK=$'%{\e[0;30m%}'
@@ -62,14 +69,14 @@ local      DEFAULT=$'%{\e[1;m%}'
 # zstyles
 # highlight completion candidates
 LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-#zstyle ':completion:*' list-colors di=34 fi=0 ex=31 ln=35
 zstyle ':completion:*' list-colors di=34 ln=35 so=32 pi=33 ex=31 bd=46 34 cd=43 su=41 sg=46 tw=42 ow=43
 # Upper case will match when you type lower case
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # set prompt
+vcs_msg0='${vcs_info_msg_0_}'
 PROMPT="%(?.$YELLOW.$RED)%(!.#.$) $WHITE"
-RPROMPT="$RED%(?..%?) $YELLOW$USER$WHITE@$GREEN$shorthost$LIGHT_GRAY:$LIGHT_PURPLE%~$LIGHT_GRAY"
+RPROMPT="$RED%(?..%?) $vcs_msg0 $YELLOW$USER$WHITE@$GREEN%m$LIGHT_GRAY:$LIGHT_PURPLE%~$LIGHT_GRAY"
 
 # agent forwarding
 if [ "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/.ssh/auth_sock" ]; then
@@ -102,7 +109,7 @@ alias dstat-full='dstat -tclmdrn'
 # key bind
 bindkey -e
 
-# functions
+# find grep functions
 function find-grep {
     find . -type f ! -path '*/.svn*' ! -path '*/.git*' -print0 | xargs -0 grep -i -n --color=auto --binary-files=without-match -e "$@"
 }
@@ -111,7 +118,7 @@ function f {
     find $@ ! -path '*/.svn*' ! -path '*/.git*'
 }
 
-preexec() {
+cmd2screen_window () {
     if [[ "$TERM" = "screen" ]]; then
         emulate -L zsh
         local -a cmd; cmd=(${(z)2})
@@ -145,10 +152,13 @@ preexec() {
             echo -n "k$cmd[1]\\") 2>/dev/null
     fi
 }
+add-zsh-hook preexec cmd2screen_window
 
-# [[ -f "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && source "$HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-# eval "$(rbenv init -)"
-# export PATH="$HOME/.linuxbrew/bin:$PATH"
-# export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
-# [[ -f "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
-# fpath=(/usr/local/share/zsh-completions $fpath)
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.plenv/bin:$PATH"
+eval "$(plenv init -)"
+export PATH=/usr/local/opt/mysql@5.6/bin/:$PATH
+export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
+export CPATH=/usr/local/opt/openssl/include:$CPATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+
