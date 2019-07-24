@@ -75,8 +75,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # set prompt
 vcs_msg0='${vcs_info_msg_0_}'
-PROMPT="%(?.$YELLOW.$RED)%(!.#.$) $DEFAULT"
-RPROMPT="$RED%(?..%?)$DEFAULT $vcs_msg0 $YELLOW$USER$WHITE@$GREEN%m$LIGHT_GRAY:$LIGHT_PURPLE%~$DEFAULT"
+PROMPT="%(?.$YELLOW.$RED)%(!.#.$) $WHITE"
+RPROMPT="$RED%(?..%?)$WHITE $vcs_msg0 $YELLOW$USER$WHITE@$GREEN%m$LIGHT_GRAY:$LIGHT_PURPLE%~$WHITE"
 
 # agent forwarding
 if [ "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/.ssh/auth_sock" ]; then
