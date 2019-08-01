@@ -87,13 +87,17 @@ if [ "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/.ssh/auth_sock" ]; then
 fi
 
 # my aliases
-alias         cp='cp -v'
-alias         rm='rm -v'
-alias         mv='mv -v'
-alias         ls='ls -FG --color=auto'
+if [[ $(uname) = "Darwin" ]]; then
+    alias ls='ls -FG'
+else
+    alias ls='ls -FG --color=auto'
+fi
 alias          l='ls -lh'
 alias         ll='ls -l'
 alias         la='ls -Al'
+alias         cp='cp -v'
+alias         rm='rm -v'
+alias         mv='mv -v'
 alias          s='screen -D -RR'
 alias          h='history'
 alias      tailf='tail -F'
